@@ -24,7 +24,7 @@ export const filteredBills = (data, status) => {
       }
 
       return selectCondition
-    }) : []
+    }): []
 }
 
 export const card = (bill) => {
