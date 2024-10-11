@@ -39,25 +39,6 @@ describe("Given I am connected as an employee", () => {
       expect(dates).toEqual(datesSorted)
     })
 
-    // //couvrir un maximum de statement
-    // describe("When I click on New Bill button", () => {
-    //   test("It should navigate to NewBill page", () => {
-
-    //     document.body.innerHTML = `<button data-testid="btn-new-bill">New Bill</button>`
-    
-    //     const onNavigate = jest.fn()
-    //     const newBills = new NewBill({ document, onNavigate, store: null, localStorage: window.localStorage })
-  
-    //     const buttonNewBill = screen.getByTestId('btn-new-bill')
-    //     //simule clic sur le bouton
-    //     buttonNewBill.click()
-  
-    //     //vérifie que la navigation a bien eu lieu
-    //     expect(onNavigate).toHaveBeenCalledWith(ROUTES_PATH['NewBill'])
-    //   })
-    // })
-
-
     //test d'intégration GET
     test("fetches bills from mock API GET", async () => {
       //simule authentification user type employé
