@@ -87,6 +87,7 @@ describe("Given I am connected as an employee", () => {
       expect(window.location.pathname).toBe(ROUTES_PATH.Login);
     });
     
+    
   
     describe("When I navigate to Bills", () => {
       //test d'intégration GET
