@@ -18,8 +18,18 @@ export default class NewBill {
   handleChangeFile = e => {
     e.preventDefault()
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
-    const filePath = e.target.value.split(/\\/g)
-    const fileName = filePath[filePath.length-1]
+    const allowedExtensions = ["jpg", "jpeg", "png"]
+    //contrôle qu'un fichier est séléctionné
+    if (file) {
+      const fileName = file.name
+      const fileExtension = fileName.split('.').pop().toLowerCase()
+      //contrôle l'extension du fichier
+      if (!allowedExtensions.includes(fileExtension)) {
+          //message d'erreur si l'extension n'est pas valide
+          alert('Le fichier doit être au format jpg, jpeg ou png.')
+          return
+      }
+    }
     const formData = new FormData()
     const email = JSON.parse(localStorage.getItem("user")).email
     formData.append('file', file)
