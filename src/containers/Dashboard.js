@@ -24,7 +24,7 @@ export const filteredBills = (data, status) => {
       }
 
       return selectCondition
-    }) : []
+    }): []
 }
 
 export const card = (bill) => {
@@ -131,8 +131,7 @@ export default class {
   }
 
   handleShowTickets(e, bills, index) {
-    if (this.counter === undefined || this.index !== index) this.counter = 0
-    if (this.index === undefined || this.index !== index) this.index = index
+    
     if (this.counter % 2 === 0) {
       $(`#arrow-icon${this.index}`).css({ transform: 'rotate(0deg)'})
       $(`#status-bills-container${this.index}`)
@@ -152,6 +151,32 @@ export default class {
     return bills
 
   }
+
+  handleShowTickets(e, bills, index) {
+    //on utilise un compteur global pr que chaque liste garde en mémoire son propre état (ouverte ou fermée) grâce à son propre compteur (en fonctio de son index)
+    if (!this.counters) this.counters = {}               
+    if (!this.counters[index]) this.counters[index] = 0
+  
+    if (this.counters[index] % 2 === 0) {              
+      $(`#arrow-icon${index}`).css({ transform: 'rotate(0deg)'})
+      $(`#status-bills-container${index}`)
+        .html(cards(filteredBills(bills, getStatus(index))))
+    } else {
+      $(`#arrow-icon${index}`).css({ transform: 'rotate(90deg)'})
+      $(`#status-bills-container${index}`)
+        .html("") 
+    }
+  
+    this.counters[index]++                              
+  
+    bills.forEach(bill => {
+      $(`#open-bill${bill.id}`).off('click') //supprime l'ancien écouteur d'event pour éviter les doublons
+      $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
+    })
+  
+    return bills
+  }
+  
 
   getBillsAllUsers = () => {
     if (this.store) {
