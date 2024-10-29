@@ -19,9 +19,12 @@ const row = (bill) => {
     `)
   }
 
-const rows = (data) => {
-  return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
-}
+  const rows = (data) => {
+    //tri des bills par ordre croissant
+    const sortedData = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    return (sortedData && sortedData.length) ? sortedData.map(bill => row(bill)).join("") : "";
+  }
 
 export default ({ data: bills, loading, error }) => {
   
