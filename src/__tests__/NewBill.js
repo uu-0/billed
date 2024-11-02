@@ -89,7 +89,7 @@ describe(" Given I am connected as an employee", () => {
 
       inputFile.addEventListener('change', handleChangeFile)
 
-      userEvent.upload(inputFile, new File(['(--[IMG]--)'], 'testFile.jpg', {
+      userEvent.upload(inputFile, new File(['testImg'], 'fichierTest.jpg', {
         type: 'image/jpg'
       }))
 
@@ -99,6 +99,7 @@ describe(" Given I am connected as an employee", () => {
       expect(inputFile.files.length).toBe(1);
       expect(inputFile).not.toHaveClass('invalid')
     })
+
     test('Then if I upload a file with invalid extension, it should add an error message', () => {
       jest.spyOn(mockStore, "bills")
       window.onNavigate(ROUTES_PATH.NewBill)
@@ -111,7 +112,7 @@ describe(" Given I am connected as an employee", () => {
 
       inputFile.addEventListener('change', handleChangeFile)
 
-      userEvent.upload(inputFile, new File(['(--[IMG]--)'], 'testFile.pdf', {
+      userEvent.upload(inputFile, (['testImg'], 'fichierInvalideTest.jpg', {
         type: 'application/pdf'
       }))
 
@@ -207,7 +208,7 @@ describe(" Given I am connected as an employee", () => {
             return Promise.resolve({ fileUrl: `${newBillInstance.fileUrl}`, key: '1234' })
           },
           update: () => {
-            return Promise.resolve({
+            return Promise.resolve({  
               "id": "56yBXc8gJn2xPLr9LyPo",
               "vat": "10",
               "fileUrl": "https://test.storage.tld/v0/b/billable-1234.a…e-2.jpg?alt=media&token=b2345678-d345-4ef9-8d4b-1234567890ab",
@@ -229,7 +230,7 @@ describe(" Given I am connected as an employee", () => {
     file.addEventListener('change', handleChangeFile)
     formNewBill.addEventListener('submit', handleSubmit)
 
-    userEvent.upload(file, new File(['--FICHIER--DE--TEST--'], 'testFile.jpg', {
+    userEvent.upload(file, new File(['testImg'], 'fichierTest.jpg', {
       type: 'image/jpg'
     }))
     fireEvent.submit(formNewBill)

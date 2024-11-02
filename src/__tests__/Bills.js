@@ -129,7 +129,7 @@ describe("Given I am connected as an employee", () => {
             }
             const billsInstance = new Bills({ document,onNavigate,store: null,localStorage})
 
-                document.body.innerHTML = BillsUI({data: bills})
+            document.body.innerHTML = BillsUI({data: bills})
 
             const iconEye = screen.getAllByTestId('icon-eye')
 
@@ -224,6 +224,7 @@ describe("When I navigate to Bills Page", () => {
         expect(billsList.length).toBe(4)
         expect(screen.getAllByText("Mes notes de frais")).toBeTruthy();
     })
+
     describe("When an error occurs on API", () => {
         test("fetches bills from an API and fails with 404 message error", async () => {
             mockStore.bills.mockImplementationOnce(() => {
